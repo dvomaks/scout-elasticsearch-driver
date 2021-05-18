@@ -111,7 +111,7 @@ class ElasticEngine extends Engine
                     /** @var SearchRule $ruleEntity */
                     $ruleEntity = new $rule($builder);
 
-                    if ($ruleEntity->isApplicable()) {
+                    if ($ruleEntity->isApplicable() && method_exists ($ruleEntity, 'getPayload') ) {
                         if (!empty($rulePayload = $ruleEntity->getPayload())) {
                             $payload
                                 ->setIfNotEmpty('body.query', $rulePayload['query'] ?? null)
