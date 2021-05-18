@@ -112,9 +112,7 @@ class ElasticEngine extends Engine
                     $ruleEntity = new $rule($builder);
 
                     if ($ruleEntity->isApplicable()) {
-                        $rulePayload = $ruleEntity->getPayload();
-                        
-                        if (!empty($rulePayload)) {
+                        if (!empty($rulePayload = $ruleEntity->getPayload())) {
                             $payload
                                 ->setIfNotEmpty('body.query', $rulePayload['query'] ?? null)
                                 ->setIfNotEmpty('body.aggregations', $rulePayload['aggregations'] ?? null)
